@@ -13,14 +13,18 @@ export class AppComponent {
   title = 'ETicaretClient';
 
   constructor(private toastrService: CustomToastrService) {
-    this.toastrService.message("test", "test", {
-      messageType: ToastrMessageType.Success,
-      position: ToastrPosition.TopCenter });
+    // this.toastrService.message("test", "test", {
+    //   messageType: ToastrMessageType.Success,
+    //   position: ToastrPosition.TopCenter });
 
-    this.toastrService.message("test", "test", {
-      messageType: ToastrMessageType.Info,
-      position: ToastrPosition.TopCenter });
+    // this.toastrService.message("test", "test", {
+    //   messageType: ToastrMessageType.Info,
+    //   position: ToastrPosition.TopCenter });
+
+
   }
-
-
 }
+//browser tabanlı olduğu için jquery kullanıldı, javascript üzerinden istek
+$.get("https://localhost:7002/api/products", data => {
+  console.log(data);
+});
