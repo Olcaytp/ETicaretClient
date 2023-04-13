@@ -190,5 +190,76 @@
 	Basecomponentta setTimeOut ile spinner time ı  belirledik 200ms olarak fakat ya dahha fazla sürerse açılması onu ilerde göreceğiz.
 	
 17.ders =  CORS Politikası Nedir? Nasıl Oluşturulur?
+	Same Origin Policy (SOP)
+	SOP, tarayıcılar (browser) tarafından yüklenen kaynaklarının, birbirleriyle olan paylaşımlarını/ilişkilerini belirli kurallar çerçevesinde kısıtlayan bir politikadır.
+	
+	SOP politikasına göre, yüklenen her bir kaynak;
+	Domain
+	Port (Bağlantı noktası)
+	birleşimi ile origin olarak tanımlanmakta ve sadece aynı origine sahip kaynaklar birbirleri ile paylaşıma geçebilmektedir.
+	
+	SOP, farklı originlerinin birbirine istek atmasının önüne geçmez, farklı bir originden dönen cevabın okunmasını engeller.
+	
+	Eğer, SOP kısıtlaması olmasaydı, zararlı bir sayfayı ziyaret ettiğimizde, o an oturumumuzun açık olduğu bir sayfadaki bilgilerimizin okunabilmesine izin verilecekti. Örneğin, Facebook’ta oturumumuz açık durumda iken kötü niyetli bir sayfayı ziyaret ettiğimizi düşünün ve o sayfa üzerinden Facebook mesajlarımızın okunabilmesine olanak tanıyacaktı.
+	
+	CORS, SOP kısıtlamasını esneten bir yapılandırmadır. Bu sebeple, dikkat edilmesi gereken bir konudur. Hatalı yapılandırılması durumunda, güvenlik problemlerine neden olacaktır.
+	
+	Tarayıcılar, CORS işlemlerini HTTP başlık bilgileri üzerinden yürütmektedir. CORS ile, A origini üzerinden B originine XMLHttpRequest ile istek yapıldığında, A’nin origin bilgisi yapılan HTTP isteğindeki “Origin” başlık bilgisi ile gönderilir. Ardından, B origininden dönen yanıtta “Access-Control-Allow-Origin” başlık bilgisi ile izin verilen originler belirtilir. A origini, B’nin izin verdiği originler arasında yer alıyorsa, herhangi bir problem yoktur ve işlem gerçekleşir. Ancak, izin verilen originler arasında A origini yer almıyorsa, tarayıcı bu işlemi engeller.
+	
+	http isteklerini api karşıladığı için politikaları api üzerinde tanımlayacağız.
+	
+	Prpgram.cs de AddCors() ile Cors politikalarını belirliyoruz. Sonra da app.UseCors() diyerek cors middleware ini çağırıyoruz yoksa çalışmaz.
+	
+18.ders = Custom HttpClient Servisi Oluşturmak
+	ProductsController da isteklerimizi oluşturuyoruz. Post isteğinde gelecek olan verileri önce viewmodel da işleme tabi tutmamız gerekiyor sanırsam.
+	
+	Daha sonra viewmodel yerine cqrst pattern kullanacağz, gelen verileri o taşıyacak.
+	
+	Appllication katmanında VievModels/Products klasörünü kledik. içine de VM_Create_Product class ını oluşturduk bunu da productsController/post isteğine parametre olarak veriyoruz.
+	
+	ProductsControllerda isteklerdeki şu ifade tracking = alse demektir.
+	return Ok(_productReadRepository.GetAll(false));
+	
+	Angular a geçip common/http-client.service dosyasını oluşturuyorum .Tüm istek yapımızı bu dosya yönetecek.
+	
+	istek yaptğımız url i base url larak app.module/provider a declare ettik.
+	
+	Ve HttpClient ı kullanabilmek için app.module e HttpClientı import etmemiz gerekiyor.
+	
+	Partial request url yapısını kurduk.
+	
+	Clientla api arasında http iletişimlerinde contract mantığını kullandk, bunun için contracts/product klasörü oluşturduk ve içine product contractımımzı interface imizi tanımladık. Bunuda product.component.ts de generic type olarak kulandık.
+	
+19.ders = Ürün Ekleme İşlemleri - ProductServce
+	Veritabanınan ürün ekleme silme işlemlerini yapabilelim .
+	 admin/components/create ve admin/components/list componentlerini oluşturduk.
+	 create componentta create methodunu tanımladık ve veritabanına ürün eklemeyi başardık.
+	 
+20.ders = Fluent Validation İle ValidationFilter
+	Ürün eklerken yanlış veriler, isimsiz veri gibi eksi değerer gibi verilerin girilmesini engelleyebilmek için validasyon kullanılmalıdır.
+	
+	validasyonlar hem ui de hem api de hemde veritabanında kullanılmalıdır .
+	
+	bu validasyonlar ui da çözülebiliyorsa backendi yormaya gerek yok.
+	
+	önce backend validasyonundan başlıyoruz. https://docs.fluentvalidation.net/en/latest/index.html fluent validation işimizi çok kolaylaştırıyor.
+	Onion architecture mimarisinde fluent validation application katmanında gerekleştrilir.
+	
+	application katmanna Validators/Products/ CreateProductValidator validatorünü ekledik ve bunu program.cs de implemente ettik. 
+	
+	Test ederken .net in kendi validatorünü çalıştırdığını farke ttik ve onu surpress ederek bastırdık ve bizim validate statemize geçiş yapmayı sağladık.
+	
+	Bunun için bir filter oluşturuyoruz.Filter bir service olduğu için infrastructure da oluşturuyoruz.
+	
+	Bunu da AddController içine options olarak ekliyorum.
+	
+	Backend validation kontrolünü ValidationFilter.cs te 15.satıra debugger koyarak test ettik ve doğruladık.
+	
+	Htmlinput kontrolü yaptık şimdilik create.component.ts de burası da ui tarafı validasyon kontrolü oldu. Ama bunu custom validation olarak yaptık, reactiveform olarak ilerde yapacağız.
+	
+	
+	
+	
+	
 	
 	
