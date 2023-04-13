@@ -25,6 +25,6 @@ export class AppComponent {
   }
 }
 //browser tabanlı olduğu için jquery kullanıldı, javascript üzerinden istek
-$.get("https://localhost:7002/api/products", data => {
-  console.log(data);
-});
+// $.get("https://localhost:7002/api/products", data => {
+//   console.log(data);
+// });
