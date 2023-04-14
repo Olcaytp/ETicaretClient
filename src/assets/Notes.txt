@@ -261,6 +261,9 @@
 21.ders = Ürünlerin Listelenmesi ve Pagination(14.04)(commitlerden takip edebilirsin)
 	Hem ui hemde api tarafnda işlemler yapıldı.
 	
+22.ders = Delete Directive İle Silme Operasyonu
+	Yönetim panelinde silme işlemi için delete.directive i oluşturduk. Nerede silme işlemi yapacaksam oraya bu diektifi yazmam yeterli olacak.
+	
 	
 	
 	
