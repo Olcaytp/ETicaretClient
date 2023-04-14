@@ -268,8 +268,6 @@
 	Angular Material dan dialog modal çekerek projeye entegre ettik.
 	Silme animasyonu ekledik.
 	
-	
-	
-	
-	
-	
+24.ders = Delete Directive Düzeltmeleri
+	Bir önceki dersteki directivemiz product module üzerindeydi.. Bunu evrensel olarak httpclientService üzerine taşıyoruz.
+25.ders = 
