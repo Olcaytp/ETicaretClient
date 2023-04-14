@@ -1,3 +1,4 @@
+(Tarihleri ders yanlarına not aldım)(commitlerden takip edebilirsin)
 1. ve 2. videoda geleneksel katmanlı mimari ve onion architecture mimarisi anlatldı.
 	projede VS 2022 kullanıldı
 	Docker Desktop
@@ -230,12 +231,12 @@
 	
 	Clientla api arasında http iletişimlerinde contract mantığını kullandk, bunun için contracts/product klasörü oluşturduk ve içine product contractımımzı interface imizi tanımladık. Bunuda product.component.ts de generic type olarak kulandık.
 	
-19.ders = Ürün Ekleme İşlemleri - ProductServce
+19.ders = Ürün Ekleme İşlemleri - ProductService
 	Veritabanınan ürün ekleme silme işlemlerini yapabilelim .
 	 admin/components/create ve admin/components/list componentlerini oluşturduk.
 	 create componentta create methodunu tanımladık ve veritabanına ürün eklemeyi başardık.
 	 
-20.ders = Fluent Validation İle ValidationFilter
+20.ders = Fluent Validation İle ValidationFilter(13.04)
 	Ürün eklerken yanlış veriler, isimsiz veri gibi eksi değerer gibi verilerin girilmesini engelleyebilmek için validasyon kullanılmalıdır.
 	
 	validasyonlar hem ui de hem api de hemde veritabanında kullanılmalıdır .
@@ -256,7 +257,9 @@
 	Backend validation kontrolünü ValidationFilter.cs te 15.satıra debugger koyarak test ettik ve doğruladık.
 	
 	Htmlinput kontrolü yaptık şimdilik create.component.ts de burası da ui tarafı validasyon kontrolü oldu. Ama bunu custom validation olarak yaptık, reactiveform olarak ilerde yapacağız.
-	
+
+21.ders = Ürünlerin Listelenmesi ve Pagination(14.04)(commitlerden takip edebilirsin)
+	Hem ui hemde api tarafnda işlemler yapıldı.
 	
 	
 	
