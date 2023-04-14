@@ -1,4 +1,4 @@
-(Tarihleri ders yanlarına not aldım)(commitlerden takip edebilirsin)
+(Tarihleri ders yanlarına not aldım)(commitlerden takip edebilirsin)(veya commitlerdeki ders numaralarından)
 1. ve 2. videoda geleneksel katmanlı mimari ve onion architecture mimarisi anlatldı.
 	projede VS 2022 kullanıldı
 	Docker Desktop
@@ -263,6 +263,10 @@
 	
 22.ders = Delete Directive İle Silme Operasyonu
 	Yönetim panelinde silme işlemi için delete.directive i oluşturduk. Nerede silme işlemi yapacaksam oraya bu diektifi yazmam yeterli olacak.
+	
+23.ders = Delete MOdal Dialog ile Silme Onaylama
+	Angular Material dan dialog modal çekerek projeye entegre ettik.
+	Silme animasyonu ekledik.
 	
 	
 	
