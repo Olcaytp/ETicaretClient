@@ -20,27 +20,19 @@ export class FileUploadComponent {
 
   public files: NgxFileDropEntry[];
 
-  public dropped(files: NgxFileDropEntry[]) {
-  }
-
-  public fileOver(event) {
-    console.log(event);
-  }
-
-  public fileLeave(event) {
-    console.log(event);
-  }
-
   @Input() options: Partial<FileUploadOptions>
 
   public selectedFiles(files: NgxFileDropEntry[]) {
+
     this.files = files;
     const fileData: FormData = new FormData();
+
     for (const file of files) {
       (file.fileEntry as FileSystemFileEntry).file((_file: File) => {
         fileData.append(_file.name, _file, file.relativePath);
       });
   }
+
     this.httpClientService.post({
       controller: this.options.controller,
       action: this.options.action,
