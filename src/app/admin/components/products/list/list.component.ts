@@ -15,6 +15,7 @@ declare var $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent extends BaseComponent implements OnInit, AfterViewInit  {
+  matPaginator: any;
 
   constructor(spiner: NgxSpinnerService, private productService: ProductService, private alertifyService: AlertifyService) {
     super(spiner)
@@ -36,11 +37,21 @@ export class ListComponent extends BaseComponent implements OnInit, AfterViewIni
       }))
     this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
     this.paginator.length = allProducts.totalCount;
+    console.log("pageIndex: " + this.paginator.pageIndex);
+    console.log("pageSize: " + this.paginator.pageSize);
+    console.log("paginator length: " + this.paginator.length);
 
   }
 
   async pageChanged() {
     await this.getProducts();
+  }
+
+  async getProductsAfterDelete() {
+    if(this.paginator.length % this.paginator.pageSize == 1){
+      this.paginator.pageIndex = this.paginator.pageIndex - 1;
+    }
+    await this.getProducts()
   }
 
   async ngOnInit() {

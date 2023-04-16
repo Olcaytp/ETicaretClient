@@ -270,4 +270,6 @@
 	
 24.ders = Delete Directive Düzeltmeleri
 	Bir önceki dersteki directivemiz product module üzerindeydi.. Bunu evrensel olarak httpclientService üzerine taşıyoruz.
-25.ders = 
+	
+25.ders = Dosya Yükleme Mekanizmasını Geliştirme
+	Videoları geriden takip eden arkadaşlar, ngx-file-drop kütüphanesinin versiyonuna dikkat ederek yükleyin. Şu sıralar yüklüyorsanız Angular 14'e göre kuruyor ve hata veriyor. package.json dosyasından 13'e göre ayarlayıp npm install yapıp hatayı giderebilirsiniz.
