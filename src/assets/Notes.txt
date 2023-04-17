@@ -10,103 +10,103 @@
 	Önce blank solution kuruldu
 	Kurulurken dosya yolu yazıldı(whatsapp fotos)
 	wordwrap özelliği nasıl açılır(wf)
-	
+
 4.videoda entityler oluşturularak veritabanı oluşturulacak.
 	product-customer-order arasındaki ilişkiler ele alındı(wf)
 	Bütün mantıksal yapılanmalar entitylerde kuruluyor.
 	Codefirst yaklaşımı ile projeyi oluşturuyoruz.
 	Veritabanı,verinin geliş yoluyla ilgili işlemleri persistence katmanında yapıyoruz.veritabanının code kısmındaki karşılığı context tir
-	
+
 	postgresql i indirdik.
 	docker desktop u indirdik.
 	wsl2 yi indirmediğim için çok hata aldım, onu da indirdim ve kurulumu tamamlayabildim.
-	
+
 	sonra connection stringi bulduk şurdan
 	https://www.connectionstrings.com/postgresql/   ve Serviceregistration a ekledik
-	
+
 	Veritabanı çalışmalarımızı persistence katmanında hallediyoruz
-	migration ları basmak için 2 yol var 
+	migration ları basmak için 2 yol var
 		1- Package manager(burda da default project olarak Persistence ı seçiyoruz, migrationın burda oluşmasını istediğimiz için)
 		Bu arada startup projesi olan EticaretAPI.API da Microsoft.EntityFrameworkCore.Design kütüphanesinin olması gerekli, onu yüklüyoruz
 		EticaretAPI.API yı startup project seçmeyi unutmuyoruz.
 		Migration yapısı nedir??
-		
+
 		2.yol powershell console ile ve meşakkatli bir yol. 4.videoda 40.dakika civarlarında anlatıyor.
-		
+
 		Migrations = veri tabanında oluşacak tabloların entitiylerden modellenmiş halini bizlere sağlıyor.Bunu migrate ettiğimiz zaman sunucu tarafına veri tabanı oluşturacak ve içerisine migrationdaki bilgiler doğrultusunda veritabanını oluşturacaktır.
-		
+
 		Migrationdan sonraki step migrate etmek. Bunu da package manager a update-database diyerek database imizi oluşturduk.
-		
+
 		Serviceregistration dosyasında connection stringi daha efektif hale getirmek için bu bilgileri appsettingjson dosyasına yazıyoruz.
-		
+
 		Bu şekilde kullanabilmek için ilgili katman persistence da nuget pm de extensions.configuration paketini indiriyoruz.Bu sınıf sayesinde json verilerini çok hızlı bir şekilde okuyabiliyoruz.içerisindeki verileri önbelleğe alabiliyoruz.
-		
+
 		Başka bir katmandaki dosyayı kullanabilmek için de extensions.configuration.json paketini indirmemiz gerekiyor.
-		
+
 		Gerekli indirmelerden sonra persistence katmanında configuration class ı oluşturduk ve içersine gerekli connectionstrings bağlantı ayarlarını yaptık ve serviceregistration da artık bağlantı ayarları yerine PostgreSQL yazarak işimizi kolaylaştırdık. ve 4.ders uzun uğraşlar sonunda bittii :)
-		
+
 5.derste veri erişim modeli tasarlanacak.
 		Repository Design Pattern açıklanıyor..
-		1den fazla veritabanı kullanılan durumda hepsini customize edebiliyoruz rdp da. 
-		Bu farklı veri tabanlarını ortak arayüzde kullanabiliyor olmak ta rdp ı kullanmak için iyi bir sebep. 
+		1den fazla veritabanı kullanılan durumda hepsini customize edebiliyoruz rdp da.
+		Bu farklı veri tabanlarını ortak arayüzde kullanabiliyor olmak ta rdp ı kullanmak için iyi bir sebep.
 		rdp da temel mantık önce arayüzler oluşturulur sonra concreteler oluşturulur.
 		Concrete: Somut sınıfların tutulduğu kısımdır.
 		rdp entitiy odaklı bir design patterndir.
 		Application katmanında interfaceler tanımlanacak, persistence katmanında da concreteler tanımlanacak.
-		
+
 		IRepository - IWriteRepositry - IReadRepository interfacelerini oluşturduk.
 		Generic yapılanmalardaki constrint mantğını kullandık.
 		ORM (Object Relational Mapping) İlişkisel veri tabanı ile uygulama içerisinde kullandığımız modelleri/nesneleri birbirine bağlama tekniğidir.
-		
+
 		nedir bu IoC Container? Açılımını Inversion of Control'den alan IoC Container, uygulamanın akışı sırasında bize yaratılması gereken doğru tipi yaratarak, uygulamanın akışını doğru bir şekilde ilerleten özel sınıflardır.
-		
+
 		Async-await geriye Task dönen yapılanmalarda kullanılır.
-		
+
 		3 tane de sorumlulukları birbirinden ayrılmış repositorylerimizi oluşturduk.
 		Customer - Order - Product
-		
+
 		AddScoped : Gelen her bir web requesti için bir instance oluşturur ve gelen her aynı requestte aynı instance’ı kullanır, farklı web requestler içinde yeni bir instance oluşturur. Örnek olarak uygulama içi bir dil dosyanız mevcut ise bunu AddScoped içersinde tutabilirsiniz.
-		
-		Serviceregistrationa addscoped özrnekleri oluşturduk ama singleton hatası aldık, singleton parametresi ekledik. 
-		
+
+		Serviceregistrationa addscoped özrnekleri oluşturduk ama singleton hatası aldık, singleton parametresi ekledik.
+
 		ProductsController a da nesneler oluşturarak bunların veritabanında oluşup oluşmadığına baktık. DateTime.UTCNow ı kabul ediyormuş, bu hatayı da çözdük ve dersimizi burada bitirdik.
-		
+
 6.Küçük Düzeltmeler ve FindAsync Metodu
 		Controller base nedir?
 		Controller basit anlamda bir iletişim kanalı olarak kullanılmakta. Bir nevi Web	 ile uygulama arasındaki köprü. Uygulamanızda View ile Model olmasa da Controller kullanarak Web ortamına bir iletişim kanalı oluşturabiliriz.
-		
+
 		Apicontroller nedir?
 		Web Api denetleyici yapısı gereği Mvc projelerindeki controllerlara benzemektedir. Web Api denetleyici gelen HTTP isteklerini karşılar ve istemciye cevap döndürmektedir. Web Api denetleyici genelde projenin Controllers klasörü altında bulunan sınıf tanımlarıdır.
-		
+
 		 ServiceRegistration da singleton ı değiştirip daha düzgün bir şekilde çalıştırıyoruz. Önceki hali aşağıda.
-		 
+
 		 Bu şekilde çalıştırabilme sebebimiz de ProductsController da şu şekilde void olarak metot çağırmayacak olmamız.
-		 
+
 		 public async void Get()  ====> void yerine Task yazarsak işi çözüryoruz.
-		 
+
 		 services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString), ServiceLifetime.Singleton);
 
             services.AddSingleton<ICustomerReadRepository, CustomerReadRepository>();
-			
+
 		Neden Scoped sağlıklı? sorusuna cevap:
 		Singleton kullanırsak uygulamanı yaşam süresi boyunca tek bir instance üzerinden işlem yaparız. düşünsenize 2 kişi request gönderiyor 1 ci requestin SaveChange() methodu tetiklendikte diğer 2 ci requesti de etkiliyor. bu yüzden Singleton kullanırken dikkatli olmalıyız
-		
+
 7.ders =  EF Core Tracking Performans Optimizasyonu
 	Entity Framework tracking nedir?
 		Ne İş Yapar? Entity Framework, bir sorgu neticesinde döndürülen tüm nesneleri izlemeye almakta ve bu nesneler üzerindeki tüm değişiklikleri bu şekilde takip edebilmektedir. İşte bu takip sayesinde ilgili nesneler üzerinde yapılan tüm değişiklikleri “SaveChanges” metodu sayesinde veritabanına yansıtabilmektedir.
-		
+
 		Tracking mekanizmasını IReadRepository ve ReadRepository de uyguladık.
 		ProductsControllerda da şu sorguyla true halini test ettik.
-		
+
 		 Product p = await _productReadRepository.GetbyIdAsync("ef68ebf3-5682-4467-afb9-eef0f4106ad5");
             p.Name = "Ahmet";
             await _productWriteRepository.SaveAsync();
-			
+
 		Tracking mekanizmasını çalıştırmak istemiyorsak ta şu şekilde false diyerek trck etmiyoruz.
-		
+
 		_productReadRepository.GetbyIdAsync("ef68ebf3-5682-4467-afb9-eef0f4106ad5", false);
-		
-		
+
+
 8.ders = SaveChangeAsync Interceptor Konusuna başlandı.
 	ProductsControllerdaki public async Task Get(){} içindeki şu fonksiyonları sildik
 			//await _productWriteRepository.AddRangeAsync(new()
@@ -116,160 +116,172 @@
             //    new() { Id = Guid.NewGuid(), Name = "Product 3", Price = 500, CreatedDate = DateTime.UtcNow, Stock = 10  },
             //});
             //var count = await _productWriteRepository.SaveAsync();
-			
+
             Product p = await _productReadRepository.GetbyIdAsync("ef68ebf3-5682-4467-afb9-eef0f4106ad5");
             p.Name = "Ahmet";
             await _productWriteRepository.SaveAsync();
-			
+
 			Veritabanında entitiyler üzerinde veya herhangi bir db nesnesi üzerinde değişiklikler yapıldığında bunu veritabanına bildirmek zorundayız .Nasıl migration ile.
-			
+
 			BaseEntity de UpdateDate oluşturduk mesela bunu bildirmemiz gerekiyor.
-			
+
 			Migration ı da persistence katmanında basacağımızı unutmuyoruz.!!
-			
+
 			int guid ile değiştirdiğimizde hata aldık ve db yi ve migration klasörünü silip yeniden kurduk.
-			
+
 9.ders = Angular Admin ve UI Geliştirme Stratejisi
-	Sunucu tarafı 2 kısımdır. 
+	Sunucu tarafı 2 kısımdır.
 	1- Admin
-	2-UI 
-	
+	2-UI
+
 	Admin kısmında ürün ekleme, siparişleri kontrol etme gibi  yetkili kişilerin erişip uı kısmını kontrol ettiği kısımdır.
-	
+
 	UI kısmında da ürünleri görme, filtreleme sipariş verme olacak.
-	
+
 10.ders = Admin ve UI Altyapısının Geliştirilmesi
 	Moduler bir çalışma olacağından dolayı önce modullerı oluşturacağız.
-	
+
 	 Eğer ki bir modul başka bir modulu kendi içinde benimseyecekse import etmesi gerekir o modulü.
-	 
+
 11.ders = Angular Multiple Layout Altyapı İnşası
-	
+
 	Moduler bir yapı sayesinde lazyloading kullanabiliyoruz.
-	
+
 	Routing yapısını inşa etik. Önce alt modüllerden başladık üst modullere doğru routing işlemi yapıyoruz. Export - import lara dikkat ediyoruz.
-	
+
 	En sonunda app.routing.module de ana layout routingleri yapılandırıyoruz.
-	
+
 12.ders = Angular Material Altyapı Entegrasyonu
-	angular material i ekledik projemize ve style.css e de linki dahil etmeyi unutmuyoruz. 
+	angular material i ekledik projemize ve style.css e de linki dahil etmeyi unutmuyoruz.
 	Sonra layout ve sidebar component leri angular material sayfasından alıyoruz.
 	Browseranimation yüklü olması gerekiyor bu arada.
-	
+
 13.ders = Angular Bootstrap Jquery Entegrasyonu
 	npm i bootstrap ile bootst	rapi yüklüyoruz.
 	npm i jquery diyoruz ve jquery kütüphanesini yüklüyoruz.angular.json scripte de import ediyoruz.
-	
-	jqueryi kullanabilmekiçin ts dosyasında 
+
+	jqueryi kullanabilmekiçin ts dosyasında
 	declare var $: any diyerek deklare ediyoruz.
-	
+
 	$(document).ready(() => {alert("asd")}) diyerek de test ediyoruz.
-	
+
 14.ders = Alertify İle Özelleştirilmiş Notification
-	https://alertifyjs.com/guide.html siteden 
+	https://alertifyjs.com/guide.html siteden
 		npm install alertifyjs --save komutunu terminale yazarak alertifyjs i indiriyoruz.
 		Sadece adminde kullanacağız.
 		gettingStartedta bahsedilen modul ekleme işlemlerini angular.json da yapıyoruz.
 		Ve sonra bunların çalışabilmesi için uygulamayı yeniden ayağa kaldırmamız gerekiyor.
-	
+
 15.Ders = Toastr İle Özelleştirilmiş Notification
-	
+
 	ui kısmında toastr kütüphanesini kullanacağız.
 	https://ngx-toastr.vercel.app/ bu sitede toasstr alertify exmaple ları var.
-	
+
 	buradan https://www.npmjs.com/package/ngx-toastr da indirme bilgilerini alarak indirmeye başladık.
-	
+
 16.ders = Spinner İle Animasyon Bekleme Altyapısı
 	https://www.npmjs.com/package/ngx-spinner sayfadan indirme liniyle paketi indiriyoruz. npm install ngx-spinner --save
-	
+
 	kullanacağımız spinnerleri angular.json style a ekliyoruz. https://labs.danielcardoso.net/load-awesome/animations.html
-	
+
 	NgxspinnerModule ü de app.module e ekliyoruz burada kullanacağımız için, hangi odule eklersek o module içerisinde kullanabiliriz.
-	
+
 	NgxspinnerModule ü Basecomponent te tanımladık ve routing yapılacak componentleri de bu base componentten türeteceğiz. Basecomponentimizde css veya html kullanmayacağımızdan dolayı onları sildik.
-	
+
 	Basecomponentta setTimeOut ile spinner time ı  belirledik 200ms olarak fakat ya dahha fazla sürerse açılması onu ilerde göreceğiz.
-	
+
 17.ders =  CORS Politikası Nedir? Nasıl Oluşturulur?
 	Same Origin Policy (SOP)
 	SOP, tarayıcılar (browser) tarafından yüklenen kaynaklarının, birbirleriyle olan paylaşımlarını/ilişkilerini belirli kurallar çerçevesinde kısıtlayan bir politikadır.
-	
+
 	SOP politikasına göre, yüklenen her bir kaynak;
 	Domain
 	Port (Bağlantı noktası)
 	birleşimi ile origin olarak tanımlanmakta ve sadece aynı origine sahip kaynaklar birbirleri ile paylaşıma geçebilmektedir.
-	
+
 	SOP, farklı originlerinin birbirine istek atmasının önüne geçmez, farklı bir originden dönen cevabın okunmasını engeller.
-	
+
 	Eğer, SOP kısıtlaması olmasaydı, zararlı bir sayfayı ziyaret ettiğimizde, o an oturumumuzun açık olduğu bir sayfadaki bilgilerimizin okunabilmesine izin verilecekti. Örneğin, Facebook’ta oturumumuz açık durumda iken kötü niyetli bir sayfayı ziyaret ettiğimizi düşünün ve o sayfa üzerinden Facebook mesajlarımızın okunabilmesine olanak tanıyacaktı.
-	
+
 	CORS, SOP kısıtlamasını esneten bir yapılandırmadır. Bu sebeple, dikkat edilmesi gereken bir konudur. Hatalı yapılandırılması durumunda, güvenlik problemlerine neden olacaktır.
-	
+
 	Tarayıcılar, CORS işlemlerini HTTP başlık bilgileri üzerinden yürütmektedir. CORS ile, A origini üzerinden B originine XMLHttpRequest ile istek yapıldığında, A’nin origin bilgisi yapılan HTTP isteğindeki “Origin” başlık bilgisi ile gönderilir. Ardından, B origininden dönen yanıtta “Access-Control-Allow-Origin” başlık bilgisi ile izin verilen originler belirtilir. A origini, B’nin izin verdiği originler arasında yer alıyorsa, herhangi bir problem yoktur ve işlem gerçekleşir. Ancak, izin verilen originler arasında A origini yer almıyorsa, tarayıcı bu işlemi engeller.
-	
+
 	http isteklerini api karşıladığı için politikaları api üzerinde tanımlayacağız.
-	
+
 	Prpgram.cs de AddCors() ile Cors politikalarını belirliyoruz. Sonra da app.UseCors() diyerek cors middleware ini çağırıyoruz yoksa çalışmaz.
-	
+
 18.ders = Custom HttpClient Servisi Oluşturmak
 	ProductsController da isteklerimizi oluşturuyoruz. Post isteğinde gelecek olan verileri önce viewmodel da işleme tabi tutmamız gerekiyor sanırsam.
-	
+
 	Daha sonra viewmodel yerine cqrst pattern kullanacağz, gelen verileri o taşıyacak.
-	
+
 	Appllication katmanında VievModels/Products klasörünü kledik. içine de VM_Create_Product class ını oluşturduk bunu da productsController/post isteğine parametre olarak veriyoruz.
-	
+
 	ProductsControllerda isteklerdeki şu ifade tracking = alse demektir.
 	return Ok(_productReadRepository.GetAll(false));
-	
+
 	Angular a geçip common/http-client.service dosyasını oluşturuyorum .Tüm istek yapımızı bu dosya yönetecek.
-	
+
 	istek yaptğımız url i base url larak app.module/provider a declare ettik.
-	
+
 	Ve HttpClient ı kullanabilmek için app.module e HttpClientı import etmemiz gerekiyor.
-	
+
 	Partial request url yapısını kurduk.
-	
+
 	Clientla api arasında http iletişimlerinde contract mantığını kullandk, bunun için contracts/product klasörü oluşturduk ve içine product contractımımzı interface imizi tanımladık. Bunuda product.component.ts de generic type olarak kulandık.
-	
+
 19.ders = Ürün Ekleme İşlemleri - ProductService
 	Veritabanınan ürün ekleme silme işlemlerini yapabilelim .
 	 admin/components/create ve admin/components/list componentlerini oluşturduk.
 	 create componentta create methodunu tanımladık ve veritabanına ürün eklemeyi başardık.
-	 
+
 20.ders = Fluent Validation İle ValidationFilter(13.04)
 	Ürün eklerken yanlış veriler, isimsiz veri gibi eksi değerer gibi verilerin girilmesini engelleyebilmek için validasyon kullanılmalıdır.
-	
+
 	validasyonlar hem ui de hem api de hemde veritabanında kullanılmalıdır .
-	
+
 	bu validasyonlar ui da çözülebiliyorsa backendi yormaya gerek yok.
-	
+
 	önce backend validasyonundan başlıyoruz. https://docs.fluentvalidation.net/en/latest/index.html fluent validation işimizi çok kolaylaştırıyor.
 	Onion architecture mimarisinde fluent validation application katmanında gerekleştrilir.
-	
-	application katmanna Validators/Products/ CreateProductValidator validatorünü ekledik ve bunu program.cs de implemente ettik. 
-	
+
+	application katmanna Validators/Products/ CreateProductValidator validatorünü ekledik ve bunu program.cs de implemente ettik.
+
 	Test ederken .net in kendi validatorünü çalıştırdığını farke ttik ve onu surpress ederek bastırdık ve bizim validate statemize geçiş yapmayı sağladık.
-	
+
 	Bunun için bir filter oluşturuyoruz.Filter bir service olduğu için infrastructure da oluşturuyoruz.
-	
+
 	Bunu da AddController içine options olarak ekliyorum.
-	
+
 	Backend validation kontrolünü ValidationFilter.cs te 15.satıra debugger koyarak test ettik ve doğruladık.
-	
+
 	Htmlinput kontrolü yaptık şimdilik create.component.ts de burası da ui tarafı validasyon kontrolü oldu. Ama bunu custom validation olarak yaptık, reactiveform olarak ilerde yapacağız.
 
 21.ders = Ürünlerin Listelenmesi ve Pagination(14.04)(commitlerden takip edebilirsin)
 	Hem ui hemde api tarafnda işlemler yapıldı.
-	
+
 22.ders = Delete Directive İle Silme Operasyonu
 	Yönetim panelinde silme işlemi için delete.directive i oluşturduk. Nerede silme işlemi yapacaksam oraya bu diektifi yazmam yeterli olacak.
-	
+
 23.ders = Delete MOdal Dialog ile Silme Onaylama
 	Angular Material dan dialog modal çekerek projeye entegre ettik.
 	Silme animasyonu ekledik.
-	
+
 24.ders = Delete Directive Düzeltmeleri
 	Bir önceki dersteki directivemiz product module üzerindeydi.. Bunu evrensel olarak httpclientService üzerine taşıyoruz.
-	
+
 25.ders = Dosya Yükleme Mekanizmasını Geliştirme
-	Videoları geriden takip eden arkadaşlar, ngx-file-drop kütüphanesinin versiyonuna dikkat ederek yükleyin. Şu sıralar yüklüyorsanız Angular 14'e göre kuruyor ve hata veriyor. package.json dosyasından 13'e göre ayarlayıp npm install yapıp hatayı giderebilirsiniz.
+	NOT: Videoları geriden takip eden arkadaşlar, ngx-file-drop kütüphanesinin versiyonuna dikkat ederek yükleyin. Şu sıralar yüklüyorsanız Angular 14'e göre kuruyor ve hata veriyor. package.json dosyasından 13'e göre ayarlayıp npm install yapıp hatayı giderebilirsiniz.
+   npm i ngx-file-drop@13.0.0 bu şekilde düzgün çalışıyor.
+
+  -Dosya yüklemeyi nx-file-drop paketini yükleyerek ve gerekli modullere gerekli importları yaparak gerçekleştirdik. apide de gerekli post request düzenlemelerini yaparak dosya yükleme işlemini tamamladık.
+
+  -Ama accept kısmında dosya çeşitlerini belirtemedim, hepsini seçiyor.
+
+26.ders = Diyalog Sayfalarının Merkezileştirilmesi
+  Dialog larda kullanılan ortak metotları base class altında topluyoruz.
+  ng g cl(class demek) dialogs/base/baseDialog
+
+
+
