@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from 'src/app/base/base.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -21,7 +23,8 @@ export class FileUploadComponent {
     private alertifyService: AlertifyService,
     private customToastrService: CustomToastrService,
     private dialog: MatDialog,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private spinner: NgxSpinnerService
   ) { }
 
   public files: NgxFileDropEntry[];
@@ -42,7 +45,7 @@ export class FileUploadComponent {
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
-
+        this.spinner.show(SpinnerType.BallSpinFadeRotating);
       this.httpClientService.post({
         controller: this.options.controller,
         action: this.options.action,
@@ -51,6 +54,7 @@ export class FileUploadComponent {
       }, fileData).subscribe(data => {
 
         const message: string = "File uploaded successfully";
+
 
         if (this.options.isAdminPage) {
           this.alertifyService.message(message, {
@@ -63,6 +67,7 @@ export class FileUploadComponent {
             messageType: ToastrMessageType.Success,
           })
         }
+        this.spinner.hide(SpinnerType.BallSpinFadeRotating);
       }, error => {
         const message: string = "File upload failed";
 
@@ -77,6 +82,7 @@ export class FileUploadComponent {
             messageType: ToastrMessageType.Error,
           })
         }
+        this.spinner.hide(SpinnerType.BallSpinFadeRotating);
       });
     }}
     ));

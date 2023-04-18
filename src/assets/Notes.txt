@@ -283,5 +283,19 @@
   Dialog larda kullanılan ortak metotları base class altında topluyoruz.
   ng g cl(class demek) dialogs/base/baseDialog
 
+27-28.ders = Dosya İsimlendirme ve SEO Uyumlu Düzeltilmesi
+	Zor bir ders oldu. Infrastructure da FileService te yaptık işlemlerimiz. Ufacık gözden kaçırmalar saatlerce uğraştırabilir.Dikkatli olunmalı.Commite dersnumarasını yazıyorum yaplan değişiklikler konu ile alakalı olarak commit ismindedir.
+
+29-ders= Table Per Hierarchy Yaklaşımı İle Dosyaların Kaydı
+	Dosyaları klasörler altında ayrıştrarak, kategorize edebilmek için düzenlemeler yapıldı.
+	İstatiksel analiz yapmak içinde yine düzenlemeler yapıldı.
+
+	Oluşturulan entities leri veritabanına Table Per Hierarchy mimarisi ile eklemek isterken farklı şeyler yaparak veritabanını bir türlü düzeltemedim.
+
+	Sonra önceden Gençay hocanın veritabanını silerek çözüm bulduğu 8.videoyu buldum. Çöüzm şu şekilde;
+
+	Veritabanıı sil/ Migration klasörünü sil/ package-manager da add-migration mig_1/update-database diyerek veritabanını tekrardan oluşturdum.
+
+
 
 
