@@ -296,6 +296,6 @@
 
 	Veritabanıı sil/ Migration klasörünü sil/ package-manager da add-migration mig_1/update-database diyerek veritabanını tekrardan oluşturdum.
 
-
-
+30-31.ders = Dosya Yönetimi İçin Storage Altyapısı ve  Azure Blob Storage Servis Entegrasyonu
+	30.ders = Dosya Yönetimi İçin Storage Altyapısının Atılması
 
