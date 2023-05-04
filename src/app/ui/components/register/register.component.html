@@ -29,7 +29,7 @@
       <div class="form-group">
         <label for="passwordConfirm">Password Confirm</label>
         <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" placeholder="Password Confirmation" [ngClass]="{'is-invalid': submitted && component.passwordConfirm.errors}">
-        <small >Please verify the password.</small>
+        <small *ngIf="submitted && frm.hasError('notSame')">Please verify the password.</small>
       </div>
 
       <br />
