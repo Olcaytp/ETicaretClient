@@ -15,7 +15,7 @@ export class ProductsComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.showSpinner(SpinnerType.SquareLoader);
   }
 
 }
