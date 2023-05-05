@@ -14,7 +14,6 @@ export class CustomersComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showSpinner(SpinnerType.SquareLoader);
   }
 
 }

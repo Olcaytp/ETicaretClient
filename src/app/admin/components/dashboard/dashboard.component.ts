@@ -16,7 +16,6 @@ export class DashboardComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.alertify.message("Hello", { messageType: MessageType.Success, position: Position.TopRight, delay: 3, dismissOthers: true });
-    this.showSpinner(SpinnerType.SquareLoader);
   }
 
 }
