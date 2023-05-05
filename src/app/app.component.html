@@ -21,17 +21,16 @@
               <a class="nav-link active" aria-current="page" routerLink="baskets">Basket</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="register" >SignUp</a>
+              <a class="nav-link active" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">SignUp</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="login">Login</a>
+              <a class="nav-link active" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Login</a>
             </li>
             <li>
-              <!--
-              <a class="nav-link active" aria-current="page" style="color:red;cursor:pointer;">Logout</a>
-            </li> -->
+              <a class="nav-link active" aria-current="page" style="color:red;cursor:pointer;" (click)="signOut()" *ngIf="authService.isAuthenticated">Logout</a>
+            </li>
             <li>
-              <a routerLink="admin" class="btn btn-outline-success" type="submit" >Admin Panel</a>
+              <a routerLink="admin" class="btn btn-outline-success" type="submit" *ngIf="authService.isAuthenticated">Admin Panel</a>
             </li>
             <!--<li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
