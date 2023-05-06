@@ -11,7 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './ui/components/login/login.component';
-import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,11 @@ import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider("1015139408101-v6kap7kuv1asv76jntb30l740ahhqd33.apps.googleusercontent.com")
+            provider: new GoogleLoginProvider("1015139408101-v6kap7kuv1asv76jntb30l740ahhqd33.apps.googleusercontent.com") //google ile giriş yaparken kullanılacak app id
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider("1443621459796844") //facebook ile giriş yaparken kullanılacak app id
           }
         ],
         onError: err => console.log(err)
