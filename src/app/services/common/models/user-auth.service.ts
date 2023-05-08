@@ -17,20 +17,36 @@ export class UserAuthService {
 
   async login (userNameOrEmail: string, password:string, callBackFunction?: () => void): Promise<any>  {
     const observable: Observable<any | TokenResponse> = this.httpClientService.post<any | TokenResponse>({
-      controller: "users",
+      controller: "auth",
       action: "login"
     }, { userNameOrEmail, password });
 
-    const TokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
+    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
     if(TokenResponse)
     {
-      localStorage.setItem("accessToken", TokenResponse.token.accessToken);
-      localStorage.setItem("expiration", TokenResponse.token.expiration.toString());
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      // localStorage.setItem("expiration", tokenResponse.token.expiration.toString());
+      localStorage.setItem("refrehToken", tokenResponse.token.refreshToken);
 
       this.toastrService.message("Kullanıcı girişi başarıyla sağlanmıştır!", "Giriş Başarılı",{
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
       });
+    }
+    callBackFunction();
+  }
+
+  async refreshTokenLogin(refreshToken: string, callBackFunction?: () => void): Promise<any> {
+    const observable: Observable<any | TokenResponse> = this.httpClientService.post({
+      action: "refreshtokenlogin",
+      controller: "auth"
+    }, { refreshToken: refreshToken });
+
+    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
+
+    if (tokenResponse) {
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refrehToken", tokenResponse.token.refreshToken);
     }
     callBackFunction();
   }
@@ -45,6 +61,8 @@ export class UserAuthService {
 
     if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refrehToken", tokenResponse.token.refreshToken);
+
       this.toastrService.message("Google üzerinden giriş başarıyla sağlanmıştır.", "Giriş Başarılı", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
@@ -62,6 +80,7 @@ export class UserAuthService {
     const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
     if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refrehToken", tokenResponse.token.refreshToken);
       this.toastrService.message("Facebook üzerinden giriş başarıyla sağlanmıştır.", "Giriş Başarılı", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
