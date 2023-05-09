@@ -34,7 +34,7 @@ export class ListComponent extends BaseComponent implements OnInit, AfterViewIni
 
   async getProducts() {
     this.showSpinner(SpinnerType.BallSpinFadeRotating);
-    const allProducts: { totalCount: number, products: List_Product[] } = await this.productService.read
+    const allProducts: { totalProductCount: number, products: List_Product[] } = await this.productService.read
     (this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () =>
       this.hideSpinner(SpinnerType.BallSpinFadeRotating), errorMessage => this.alertifyService.message(errorMessage, {
         dismissOthers: true,
@@ -42,7 +42,7 @@ export class ListComponent extends BaseComponent implements OnInit, AfterViewIni
         position: Position.TopRight
       }))
     this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
-    this.paginator.length = allProducts.totalCount;
+    this.paginator.length = allProducts.totalProductCount;
     console.log("pageIndex: " + this.paginator.pageIndex);
     console.log("pageSize: " + this.paginator.pageSize);
     console.log("paginator length: " + this.paginator.length);
