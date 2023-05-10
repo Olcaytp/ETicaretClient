@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './services/common/auth.service';
 import { Component } from '@angular/core';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
+import { HttpClientService } from './services/common/http-client.service';
 
 declare var $: any
 
@@ -14,7 +15,8 @@ export class AppComponent {
 
   constructor(public authService: AuthService,
               private router: Router,
-              private toastrService: CustomToastrService
+              private toastrService: CustomToastrService,
+              private httpClientService: HttpClientService
     ) {
     authService.identityCheck();
   }

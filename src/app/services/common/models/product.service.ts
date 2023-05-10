@@ -36,6 +36,8 @@ export class ProductService {
       controller: "products",
       queryString: `page=${page}&size=${size}`
     }));
+    console.log("promiseData");
+    console.log(promiseData);
 
     promiseData.then(d => successCallBack())
       .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))

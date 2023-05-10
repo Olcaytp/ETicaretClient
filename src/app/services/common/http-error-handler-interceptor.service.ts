@@ -21,12 +21,21 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(catchError(error => {
       switch(error.status){
         case HttpStatusCode.Unauthorized:
-          this.toastrService.message("Yetkisiz işlem", "Yetkisiz işlem", {
-            messageType: ToastrMessageType.Warning,
-            position: ToastrPosition.BottomFullWidth
-          });
-          console.log("Yetkisiz işlem");
-          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data => {
+          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken"), (state) => {
+            if (!state) {
+              const url = this.router.url;
+              if (url == "/products")
+                this.toastrService.message("Sepete ürün eklemek için oturum açmanız gerekiyor.", "Oturum açınız!", {
+                  messageType: ToastrMessageType.Warning,
+                  position: ToastrPosition.TopRight
+                });
+              else
+                this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
+                  messageType: ToastrMessageType.Warning,
+                  position: ToastrPosition.BottomFullWidth
+                });
+            }
+          }).then(data => {
 
           });
           break;
