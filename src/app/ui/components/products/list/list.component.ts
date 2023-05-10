@@ -29,7 +29,7 @@ export class ListComponent extends BaseComponent {
   currentPageNo: number;
   totalProductCount: number;
   totalPageCount: number;
-  pageSize: number = 12;
+  pageSize: number = 15;
   pageList: number[] = [];
   baseUrl: BaseUrl;
 
@@ -53,7 +53,8 @@ export class ListComponent extends BaseComponent {
         });
 
       this.products = data.products;
-      console.log(this.products);
+      console.log("data");
+      console.log(data.totalProductCount);
 
       this.products = this.products.map<List_Product>(p => {
         const listProduct: List_Product = {
@@ -68,12 +69,13 @@ export class ListComponent extends BaseComponent {
           updatedDate: p.updatedDate,
           productImageFiles: p.productImageFiles
         };
-        console.log(listProduct);
         return listProduct;
       });
 
       this.totalProductCount = data.totalProductCount;
-      this.totalPageCount = Math.round(this.totalProductCount / this.pageSize);
+      this.totalPageCount = Math.ceil(this.totalProductCount / this.pageSize);
+      console.log("totalPageCount");
+      console.log(this.totalPageCount);
 
       this.pageList = [];
 
