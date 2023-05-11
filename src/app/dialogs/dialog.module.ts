@@ -10,6 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { ShoppingCompleteDialogComponent } from './shopping-complete-dialog/shopping-complete-dialog.component';
 import { BasketItemRemoveDialogComponent } from './basket-item-remove-dialog/basket-item-remove-dialog.component';
+import { OrderDetailDialogComponent } from './order-detail-dialog/order-detail-dialog.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -18,11 +21,12 @@ import { BasketItemRemoveDialogComponent } from './basket-item-remove-dialog/bas
     DeleteDialogComponent,
     SelectProductImageDialogComponent,
     ShoppingCompleteDialogComponent,
-    BasketItemRemoveDialogComponent
+    BasketItemRemoveDialogComponent,
+    OrderDetailDialogComponent
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule, MatCardModule,
+    MatDialogModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule,
     FileUploadModule,
     FormsModule
   ]
