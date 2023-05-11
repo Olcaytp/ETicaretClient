@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
 import { CreateComponent } from './create/create.component';
-import { ListComponent } from './list/list.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +13,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
 import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
 import { DialogModule } from '@angular/cdk/dialog';
+import { DeleteDirectiveModule } from 'src/app/directives/admin/delete.directive.module';
+import { ListComponent } from './list/list.component';
 
 
 
@@ -21,8 +22,7 @@ import { DialogModule } from '@angular/cdk/dialog';
   declarations: [
     ProductsComponent,
     CreateComponent,
-    ListComponent,
-    DeleteDirective
+    ListComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +36,8 @@ import { DialogModule } from '@angular/cdk/dialog';
     MatPaginatorModule,
     MatSidenavModule,
     DialogModule,
-    FileUploadModule
+    FileUploadModule,
+    DeleteDirectiveModule
   ]
 })
 export class ProductsModule { }
