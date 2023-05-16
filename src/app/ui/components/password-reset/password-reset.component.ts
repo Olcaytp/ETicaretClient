@@ -9,11 +9,6 @@ import { UserAuthService } from 'src/app/services/common/models/user-auth.servic
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.scss']
 })
-@Component({
-  selector: 'app-password-reset',
-  templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss']
-})
 export class PasswordResetComponent extends BaseComponent {
 
   constructor(spinner: NgxSpinnerService, private userAuthService: UserAuthService, private alertifyService: AlertifyService) {
