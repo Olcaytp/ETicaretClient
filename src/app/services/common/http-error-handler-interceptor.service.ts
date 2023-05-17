@@ -18,9 +18,11 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
               ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     return next.handle(req).pipe(catchError(error => {
       switch(error.status){
         case HttpStatusCode.Unauthorized:
+
           this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken"), (state) => {
             if (!state) {
               const url = this.router.url;
@@ -36,7 +38,10 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
                 });
             }
           }).then(data => {
-
+            this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
+              messageType: ToastrMessageType.Warning,
+              position: ToastrPosition.BottomFullWidth
+            });
           });
           break;
         case HttpStatusCode.InternalServerError:
