@@ -299,3 +299,9 @@
 30-31.ders = Dosya Yönetimi İçin Storage Altyapısı ve  Azure Blob Storage Servis Entegrasyonu
 	30.ders = Dosya Yönetimi İçin Storage Altyapısının Atılması
 
+.......
+
+70.ders = QrCode Okuma ve Ürün Stock Bilgisi Güncelleme
+  Bu derste ngc-scanner-qrcode --save --force ile qrcode okumak için kütüphane yükledik.
+  Gencay Hoca da şöyle güzel bir bilgi paylaştı yine. En sonunda githubtan projeyi indirdiğimizde çalıştırmak istemiyorsak
+  npm install --force dememiz gerekiyormuş sürüm güncellemelerinden dolayı hatayla karşılaşmamak için.
