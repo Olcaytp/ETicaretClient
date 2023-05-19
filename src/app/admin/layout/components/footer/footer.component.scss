@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: rgb(255, 255, 255);
+  --font-mukta: "Mukta", sans-serif;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  /* padding:0 3rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+footer {
+  width: 100%;
+  height: 3rem;
+  background-color: rgb(240, 240, 240);
+  font-size: 1rem;
+  font-family: var(--font-mukta);
+  padding: 1% 2%;
+  text-align: right;
+}

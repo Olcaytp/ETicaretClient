@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="card" style="width: 18rem;float:left;margin:5px;"
+<div class="row first">
+  <div class="card col-md-6 col-lg-4 col-xl-4" style="width: 18rem;float:left;margin:5px;"
        *ngFor="let product of products;">
     <img width="250" height="250" *ngIf="!product.productImageFiles.length" src="../../../../../assets/product.png" class="card-img-top" alt="...">
     <img width="250" height="250" *ngIf="product.productImageFiles.length" src="{{baseUrl.url}}/{{product.imagePath}}" class="card-img-top" alt="...">

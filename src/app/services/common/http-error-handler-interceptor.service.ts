@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, catchError, of } from 'rxjs';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
 import { UserAuthService } from './models/user-auth.service';
+import { SpinnerType } from 'src/app/base/base.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,7 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
                   position: ToastrPosition.TopRight
                 });
               else
+                debugger;
                 this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
                   messageType: ToastrMessageType.Warning,
                   position: ToastrPosition.BottomFullWidth
@@ -69,6 +71,8 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
           });
           break;
       }
+
+      this.spinner.hide(SpinnerType.BallSpinFadeRotating);
       return of(error);
     }));
   }
