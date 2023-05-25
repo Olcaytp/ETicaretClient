@@ -33,7 +33,6 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
                   position: ToastrPosition.TopRight
                 });
               else
-                debugger;
                 this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
                   messageType: ToastrMessageType.Warning,
                   position: ToastrPosition.BottomFullWidth

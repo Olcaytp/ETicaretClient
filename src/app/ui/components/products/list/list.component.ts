@@ -41,16 +41,14 @@ export class ListComponent extends BaseComponent {
     console.log("adssad");
     console.log(this.baseUrl);
 
-    this.activatedRoute.queryParams.subscribe(async params => {
+    this.activatedRoute.params.subscribe(async params => {
       this.currentPageNo = parseInt(params["page"] ?? 1);
+      console.log("this.currentPageNo");
+
 
       const data: { totalProductCount: number, products: List_Product[] } = await this.productService.read(this.currentPageNo - 1, this.pageSize,
-        () => {
-
-        },
-        errorMessage => {
-
-        });
+        () => {},
+        errorMessage => { });
 
       this.products = data.products;
       console.log("data");
@@ -104,7 +102,8 @@ export class ListComponent extends BaseComponent {
           this.pageList.push(i);
         }
       }
-
+      console.log("pageList");
+      console.log(this.pageList);
     });
   }
 

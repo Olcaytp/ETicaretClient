@@ -4,6 +4,7 @@ import { DashboardComponent } from './admin/components/dashboard/dashboard.compo
 import { LayoutComponent } from './admin/layout/layout.component';
 import { HomeComponent } from './ui/components/home/home.component';
 import { AuthGuard } from './guards/common/auth.guard';
+import { ProductsComponent } from './ui/components/products/products.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
       { path: "users", loadChildren: () => import("./admin/components/user/user.module").then(module => module.UserModule), canActivate: [AuthGuard] },
     ], canActivate: [AuthGuard]
   },
-  { path: '', component: HomeComponent},
+  { path: '', component: ProductsComponent, pathMatch: 'full'},
   { path: 'baskets', loadChildren: () => import('./ui/components/baskets/baskets.module').then(m => m.BasketsModule) },
   { path: 'products', loadChildren: () => import('./ui/components/products/products.module').then(m => m.ProductsModule) },
   { path: "products/:pageNo", loadChildren: () => import('./ui/components/products/products.module').then(m => m.ProductsModule) },
